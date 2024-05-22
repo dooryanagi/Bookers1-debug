@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  def top
-  end
+
+  # bookscontroller内にあったtopアクションを削除
 
   def index
     @books = Book.all
@@ -13,6 +13,8 @@ class BooksController < ApplicationController
       flash[:notice] = "Book was successfully created."
       redirect_to book_path(@book.id)
     else
+      # renderの時はビューを介さない、index内で定義している変数をcreate内でも定義する必要がある
+      @books = Book.all
       render :index
     end
   end
@@ -27,7 +29,8 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    if @book.update()
+    # idではなくupdateする対象のデータをテーブルから持ってきてそこにupdateする
+    if @book.update(book_params)
       flash[:notice] = "Book was successfully updated."
       redirect_to book_path(@book.id)
     else

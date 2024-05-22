@@ -1,8 +1,9 @@
 <h1>Editing Book</h1>
 
-<form>
+<!--formで囲まないでrenderしてみる-->
+<!--formを消すとできた！なんでだろう？？-->
 <%= render 'form', book: @book %>
-</form>
+
 
 <%= link_to 'Show', @book %> |
 <%= link_to 'Back', books_path %>

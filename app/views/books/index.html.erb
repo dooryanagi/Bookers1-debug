@@ -14,9 +14,10 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.body %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path, %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--遷移先を修正、詳細ページや編集、削除はidの指定が必要-->
+        <td><%= link_to 'Show', book_path(book.id) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book.id) %></td>
+        <td><%= link_to 'Destroy', book_path(book.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +25,4 @@
 
 
 <h2>New book</h2>
-<%= render 'form' %>
+<%= render 'form',book: @book %>
